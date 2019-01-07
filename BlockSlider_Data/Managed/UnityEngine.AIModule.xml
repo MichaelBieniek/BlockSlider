@@ -651,14 +651,14 @@
         <para>Specify which types of debug data to collect when building the NavMesh.</para>
       </summary>
     </member>
-    <member name="T:UnityEngine.AI.NavMeshBuilder">
+    <member name="T:UnityEditor.AI.NavMeshBuilder">
       <summary>
         <para>Navigation mesh builder interface.</para>
       </summary>
     </member>
     <member name="M:UnityEngine.AI.NavMeshBuilder.BuildNavMeshData(UnityEngine.AI.NavMeshBuildSettings,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildSource&gt;,UnityEngine.Bounds,UnityEngine.Vector3,UnityEngine.Quaternion)">
       <summary>
-        <para>Builds a NavMesh data object from the provided input sources.</para>
+        <para>Builds a NavMesh data object from the provided input sources. (UnityEngine)</para>
       </summary>
       <param name="buildSettings">Settings for the bake process, see NavMeshBuildSettings.</param>
       <param name="sources">List of input geometry used for baking, they describe the surfaces to walk on or obstacles to avoid.</param>
@@ -670,15 +670,20 @@
 The newly built NavMeshData, or null if the NavMeshData was empty or an error occurred.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.AI.NavMeshBuilder.Cancel(UnityEngine.AI.NavMeshData)">
+    <member name="M:UnityEditor.AI.NavMeshBuilder.Cancel">
       <summary>
-        <para>Cancels an asynchronous update of the specified NavMesh data. See Also: UpdateNavMeshDataAsync.</para>
+        <para>Cancel Navmesh construction. (UnityEditor) See Also: NavMeshBuilder.BuildNavMeshAsync</para>
+      </summary>
+    </member>
+    <member name="M:UnityEditor.AI.NavMeshBuilder.Cancel(UnityEngine.AI.NavMeshData)">
+      <summary>
+        <para>Cancels an asynchronous update of the specified NavMesh data. (UnityEngine) See Also: NavMeshBuilder.UpdateNavMeshDataAsync.</para>
       </summary>
       <param name="data">The data associated with asynchronous updating.</param>
     </member>
     <member name="M:UnityEngine.AI.NavMeshBuilder.CollectSources(UnityEngine.Bounds,System.Int32,UnityEngine.AI.NavMeshCollectGeometry,System.Int32,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildMarkup&gt;,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildSource&gt;)">
       <summary>
-        <para>Collects renderers or physics colliders, and terrains within a volume.</para>
+        <para>Collects renderers or physics colliders, and terrains within a volume. (UnityEngine)</para>
       </summary>
       <param name="includedWorldBounds">The queried objects must overlap these bounds to be included in the results.</param>
       <param name="includedLayerMask">Specifies which layers are included in the query.</param>
@@ -689,7 +694,7 @@ The newly built NavMeshData, or null if the NavMeshData was empty or an error oc
     </member>
     <member name="M:UnityEngine.AI.NavMeshBuilder.CollectSources(UnityEngine.Transform,System.Int32,UnityEngine.AI.NavMeshCollectGeometry,System.Int32,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildMarkup&gt;,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildSource&gt;)">
       <summary>
-        <para>Collects renderers or physics colliders, and terrains within a transform hierarchy.</para>
+        <para>Collects renderers or physics colliders, and terrains within a transform hierarchy. (UnityEngine)</para>
       </summary>
       <param name="root">If not null, consider only root and its children in the query; if null, includes everything loaded.</param>
       <param name="includedLayerMask">Specifies which layers are included in the query.</param>
@@ -700,7 +705,7 @@ The newly built NavMeshData, or null if the NavMeshData was empty or an error oc
     </member>
     <member name="M:UnityEngine.AI.NavMeshBuilder.UpdateNavMeshData(UnityEngine.AI.NavMeshData,UnityEngine.AI.NavMeshBuildSettings,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildSource&gt;,UnityEngine.Bounds)">
       <summary>
-        <para>Incrementally updates the NavMeshData based on the sources.</para>
+        <para>Incrementally updates the NavMeshData based on the sources. (UnityEngine)</para>
       </summary>
       <param name="data">The NavMeshData to update.</param>
       <param name="buildSettings">The build settings which is used to update the NavMeshData. The build settings is also hashed along with the data, so changing settings will cause a full rebuild.</param>
@@ -712,7 +717,7 @@ The newly built NavMeshData, or null if the NavMeshData was empty or an error oc
     </member>
     <member name="M:UnityEngine.AI.NavMeshBuilder.UpdateNavMeshDataAsync(UnityEngine.AI.NavMeshData,UnityEngine.AI.NavMeshBuildSettings,System.Collections.Generic.List`1&lt;UnityEngine.AI.NavMeshBuildSource&gt;,UnityEngine.Bounds)">
       <summary>
-        <para>Asynchronously and incrementally updates the NavMeshData based on the sources.</para>
+        <para>Asynchronously and incrementally updates the NavMeshData based on the sources. (UnityEngine)</para>
       </summary>
       <param name="data">The NavMeshData to update.</param>
       <param name="buildSettings">The build settings which is used to update the NavMeshData. The build settings is also hashed along with the data, so changing settings will likely to cause full rebuild.</param>
@@ -1402,7 +1407,7 @@ The newly built NavMeshData, or null if the NavMeshData was empty or an error oc
         <para>Initiates a pathfinding operation between two locations on the NavMesh.</para>
       </summary>
       <param name="costs">Array of custom cost values for all of the 32 possible area types. Each value must be at least 1.0f. This parameter is optional and defaults to the area costs configured in the project settings. See Also: NavMesh.GetAreaCost.</param>
-      <param name="areaMask">Bitmask where values of 1 set at the indices for areas that can be traversed, and values of 0 for areas that are not traversable. This parameter is optional and defaults to NavMesh.AllAreas if omitted. See Also:.</param>
+      <param name="areaMask">Bitmask with values of 1 set at the indices for areas that can be traversed, and values of 0 for areas that are not traversable. This parameter is optional and defaults to NavMesh.AllAreas, if omitted. See Also:.</param>
       <param name="start">The start location on the NavMesh for the path.</param>
       <param name="end">The location on the NavMesh where the path ends.</param>
       <returns>
@@ -1411,9 +1416,9 @@ The newly built NavMeshData, or null if the NavMeshData was empty or an error oc
 Failure if the query's NavMeshWorld or any of the received parameters are no longer valid.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.CreateLocation(UnityEngine.Vector3,UnityEngine.Experimental.AI.PolygonID)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.CreateLocation(UnityEngine.Vector3,UnityEngine.Experimental.AI.PolygonId)">
       <summary>
-        <para>Returns a valid NavMeshLocation for a position and a matching polygon provided by the user.</para>
+        <para>Returns a valid NavMeshLocation for a position and a polygon provided by the user.</para>
       </summary>
       <param name="position">World position of the NavMeshLocation to be created.</param>
       <param name="polygon">Valid identifier for the NavMesh node.</param>
@@ -1438,7 +1443,7 @@ Failure if the query's NavMeshWorld or any of the received parameters are no lon
       <summary>
         <para>Obtains the number of nodes in the path that has been computed during a successful NavMeshQuery.UpdateFindPath operation.</para>
       </summary>
-      <param name="pathSize">Outputs how many NavMesh nodes the found path has.</param>
+      <param name="pathSize">A reference to an int which will be set to the number of NavMesh nodes in the found path.</param>
       <returns>
         <para>Success when the number of nodes in the path was retrieved correctly.
 
@@ -1447,7 +1452,7 @@ PartialPath when a path was found but it falls short of the desired end location
 Failure when the path size can not be evaluated because the preceding call to UpdateFindPath was not successful.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetAgentTypeIdForPolygon(UnityEngine.Experimental.AI.PolygonID)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetAgentTypeIdForPolygon(UnityEngine.Experimental.AI.PolygonId)">
       <summary>
         <para>Returns the identifier of the agent type the NavMesh was baked for or for which the link has been configured.</para>
       </summary>
@@ -1456,7 +1461,7 @@ Failure when the path size can not be evaluated because the preceding call to Up
         <para>Agent type identifier.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPathResult(Unity.Collections.NativeSlice`1&lt;UnityEngine.Experimental.AI.PolygonID&gt;)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPathResult(Unity.Collections.NativeSlice`1&lt;UnityEngine.Experimental.AI.PolygonId&gt;)">
       <summary>
         <para>Copies into the provided array the list of NavMesh nodes that form the path found by the NavMeshQuery operation.</para>
       </summary>
@@ -1465,7 +1470,7 @@ Failure when the path size can not be evaluated because the preceding call to Up
         <para>Number of path nodes successfully copied into the provided array.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPolygonType(UnityEngine.Experimental.AI.PolygonID)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPolygonType(UnityEngine.Experimental.AI.PolygonId)">
       <summary>
         <para>Returns whether the NavMesh node is a polygon or a link.</para>
       </summary>
@@ -1476,7 +1481,7 @@ Failure when the path size can not be evaluated because the preceding call to Up
 OffMeshConnection when the node is a.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPortalPoints(UnityEngine.Experimental.AI.PolygonID,UnityEngine.Experimental.AI.PolygonID,UnityEngine.Vector3&amp;,UnityEngine.Vector3&amp;)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.GetPortalPoints(UnityEngine.Experimental.AI.PolygonId,UnityEngine.Experimental.AI.PolygonId,UnityEngine.Vector3&amp;,UnityEngine.Vector3&amp;)">
       <summary>
         <para>Obtains the end points of the line segment common to two adjacent NavMesh nodes.</para>
       </summary>
@@ -1489,28 +1494,28 @@ OffMeshConnection when the node is a.</para>
 False if no connection exists between the two NavMesh nodes.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.IsValid(UnityEngine.Experimental.AI.PolygonID)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.IsValid(UnityEngine.Experimental.AI.PolygonId)">
       <summary>
-        <para>Returns true if the node referenced by the specified PolygonID is active in the NavMesh.</para>
+        <para>Returns true if the node referenced by the specified PolygonId is active in the NavMesh.</para>
       </summary>
       <param name="polygon">Identifier of the NavMesh node to be checked.</param>
     </member>
     <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.IsValid(UnityEngine.Experimental.AI.NavMeshLocation)">
       <summary>
-        <para>Returns true if the node referenced by the PolygonID contained in the NavMeshLocation is active in the NavMesh.</para>
+        <para>Returns true if the node referenced by the PolygonId contained in the NavMeshLocation is active in the NavMesh.</para>
       </summary>
       <param name="location">Location on the NavMesh to be checked. Same as checking location.polygon directly.</param>
     </member>
     <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.MapLocation(UnityEngine.Vector3,UnityEngine.Vector3,System.Int32,System.Int32)">
       <summary>
-        <para>Finds the closest point and PolygonID on the NavMesh for a given world position.</para>
+        <para>Finds the closest point and PolygonId on the NavMesh for a given world position.</para>
       </summary>
       <param name="position">World position for which the closest point on the NavMesh needs to be found.</param>
       <param name="extents">Maximum distance, from the specified position, expanding along all three axes, within which NavMesh surfaces are searched.</param>
       <param name="agentTypeID">Identifier for the agent type whose NavMesh surfaces should be selected for this operation. The Humanoid agent type exists for all NavMeshes and has an ID of 0. Other agent types can be defined manually through the Editor. A separate NavMesh surface needs to be baked for each agent type.</param>
       <param name="areaMask">Bitmask used to represent areas of the NavMesh that should (value of 1) or shouldn't (values of 0) be sampled. This parameter is optional and defaults to NavMesh.AllAreas if unspecified. See Also:.</param>
       <returns>
-        <para>An object with position and valid PolygonID  - when a point on the NavMesh has been found.
+        <para>An object with position and valid PolygonId  - when a point on the NavMesh has been found.
 
 An invalid object - when no NavMesh surface with the desired features has been found within the search area. See Also: NavMeshQuery.IsValid.</para>
       </returns>
@@ -1520,10 +1525,10 @@ An invalid object - when no NavMesh surface with the desired features has been f
         <para>Translates a NavMesh location to another position without losing contact with the surface.</para>
       </summary>
       <param name="location">Position to be moved across the NavMesh surface.</param>
-      <param name="target">World position wanted to be reached.</param>
+      <param name="target">World position you require the agent to move to.</param>
       <param name="areaMask">Bitmask with values of 1 set at the indices corresponding to areas that can be traversed, and with values of 0 for areas that should not be traversed. This parameter can be omitted, in which case it defaults to NavMesh.AllAreas. See Also:.</param>
       <returns>
-        <para>A new location on the NavMesh placed as closed as possible to the specified target position.
+        <para>A new location on the NavMesh placed as closely as possible to the specified target position.
 
 The start location is returned when that start is inside an area which is not allowed by the areaMask.</para>
       </returns>
@@ -1532,30 +1537,30 @@ The start location is returned when that start is inside an area which is not al
       <summary>
         <para>Translates a series of NavMesh locations to other positions without losing contact with the surface.</para>
       </summary>
-      <param name="locations">Array of positions to be moved across the NavMesh surface. At the end of the function call this array will contain the resulting locations.</param>
-      <param name="targets">World positions wanted to be reached through the movement.</param>
-      <param name="areaMasks">Filters for the areas which cam be traversed during the movement of each of the locations.</param>
+      <param name="locations">Array of positions to be moved across the NavMesh surface. At the end of the method call this array contains the resulting locations.</param>
+      <param name="targets">World positions to be used as movement targets by the agent.</param>
+      <param name="areaMasks">Filters for the areas which can be traversed during the movement to each of the locations.</param>
     </member>
     <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.MoveLocationsInSameAreas(Unity.Collections.NativeSlice`1&lt;UnityEngine.Experimental.AI.NavMeshLocation&gt;,Unity.Collections.NativeSlice`1&lt;UnityEngine.Vector3&gt;,System.Int32)">
       <summary>
         <para>Translates a series of NavMesh locations to other positions without losing contact with the surface, given one common area filter for all of them.</para>
       </summary>
-      <param name="locations">Array of positions to be moved across the NavMesh surface. At the end of the function call this array will contain the resulting locations.</param>
-      <param name="targets">World positions wanted to be reached through the movement of each of the locations.</param>
-      <param name="areaMask">Filter for the areas which cam be traversed during the movement.</param>
+      <param name="locations">Array of positions to be moved across the NavMesh surface. At the end of the method call this array contains the resulting locations.</param>
+      <param name="targets">World positions you want the agent to reach when moving to each of the locations.</param>
+      <param name="areaMask">Filters for the areas which can be traversed during the movement to each of the locations.</param>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.PolygonLocalToWorldMatrix(UnityEngine.Experimental.AI.PolygonID)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.PolygonLocalToWorldMatrix(UnityEngine.Experimental.AI.PolygonId)">
       <summary>
         <para>Returns the transformation matrix of the NavMesh surface that contains the specified NavMesh node (Read Only).</para>
       </summary>
       <param name="polygon">NavMesh node for which its owner's transform must be determined.</param>
       <returns>
-        <para>Transformation matrix of the surface owning the specified polygon.
+        <para>Transformation matrix for the surface owning the specified polygon.
 
 Matrix4x4.identity when the NavMesh node is a.</para>
       </returns>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.PolygonWorldToLocalMatrix(UnityEngine.Experimental.AI.PolygonID)">
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.PolygonWorldToLocalMatrix(UnityEngine.Experimental.AI.PolygonId)">
       <summary>
         <para>Returns the inverse transformation matrix of the NavMesh surface that contains the specified NavMesh node (Read Only).</para>
       </summary>
@@ -1566,18 +1571,52 @@ Matrix4x4.identity when the NavMesh node is a.</para>
 Matrix4x4.identity when the NavMesh node is a.</para>
       </returns>
     </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.Raycast(UnityEngine.AI.NavMeshHit&amp;,UnityEngine.Experimental.AI.NavMeshLocation,UnityEngine.Vector3,System.Int32,Unity.Collections.NativeArray`1&lt;System.Single&gt;)">
+      <summary>
+        <para>Trace a line between two points on the NavMesh.</para>
+      </summary>
+      <param name="hit">Holds the properties of the raycast resulting location.</param>
+      <param name="start">The start location of the ray on the NavMesh. start.polygon must be of the type NavMeshPolyTypes.Ground.</param>
+      <param name="targetPosition">The desired end of the ray, in world coordinates.</param>
+      <param name="areaMask">Bitmask that correlates index positions with area types.  The index goes from 0 to 31. In each relevant index position, you have to set the value to either 1 or 0. 1 indicates area types that the ray can pass through. 0 indicates area types that block the ray. This parameter is optional. If you leave out this parameter, it defaults to NavMesh.AllAreas. To learn more, see:.</param>
+      <param name="costs">Array of custom cost values for all of the 32 possible area types. They act as multipliers to the distance reported by the ray when crossing various areas. This parameter is optional. If you omit it, it defaults to the area costs that you configured in the Project settings. To learn more, see NavMesh.GetAreaCost.</param>
+      <returns>
+        <para>Success if the ray can be correctly traced using the provided arguments.
+
+Failure if the start location is not valid in the query's NavMeshWorld, or if it is inside an area not permitted by the areaMask argument, or when it is on a.</para>
+      </returns>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.Raycast(UnityEngine.AI.NavMeshHit&amp;,Unity.Collections.NativeSlice`1&lt;UnityEngine.Experimental.AI.PolygonId&gt;,System.Int32&amp;,UnityEngine.Experimental.AI.NavMeshLocation,UnityEngine.Vector3,System.Int32,Unity.Collections.NativeArray`1&lt;System.Single&gt;)">
+      <summary>
+        <para>Trace a line between two points on the NavMesh, and return the list of polygons through which it passed.</para>
+      </summary>
+      <param name="hit">Holds the properties of the raycast resulting location.</param>
+      <param name="path">A buffer that will be filled with the sequence of polygons through which the ray passes.</param>
+      <param name="pathCount">The reported number of polygons through which the ray has passed, all stored in the path buffer. It will not be greater than path.Length.</param>
+      <param name="start">The start location of the ray on the NavMesh. start.polygon must be of the type NavMeshPolyTypes.Ground.</param>
+      <param name="targetPosition">The desired end of the ray, in world coordinates.</param>
+      <param name="areaMask">A bitfield that specifies which NavMesh areas can be traversed when the ray is traced. This parameter is optional. If you do not fill out this parameter, it defaults to NavMesh.AllAreas.</param>
+      <param name="costs">Cost multipliers that affect the distance reported by the ray over different area types. This parameter is optional. If you omit it, it defaults to the area costs that you configured in the Project settings.</param>
+      <returns>
+        <para>Success if the ray can be correctly traced using the provided arguments.
+
+Failure if the start location is not valid in the query's NavMeshWorld, or if it is inside an area not permitted by the areaMask argument, or when it is on a.
+
+BufferTooSmall is part of the returned flags when the provided path buffer is not large enough to hold all the polygons that the ray passed through.</para>
+      </returns>
+    </member>
     <member name="M:UnityEngine.Experimental.AI.NavMeshQuery.UpdateFindPath(System.Int32,System.Int32&amp;)">
       <summary>
         <para>Continues a path search that is in progress.</para>
       </summary>
-      <param name="iterations">Maximum number of nodes that will be traversed by the search algorithm during this call.</param>
+      <param name="iterations">Maximum number of nodes to be traversed by the search algorithm during this call.</param>
       <param name="iterationsPerformed">Outputs the actual number of nodes that have been traversed during this call.</param>
       <returns>
         <para>InProgress if the search needs to continue further by calling UpdateFindPath again.
 
 Success if the search is completed and a path has been found or not.
 
-Failure if the search to the desired position could not be completed because the NavMesh has changed significantly meanwhile.
+Failure if the search for the desired position could not be completed because the NavMesh has changed significantly since the search was initiated.
 
 Additionally the returned value can contain the OutOfNodes flag when the pathNodePoolSize parameter for the NavMeshQuery initialization was not large enough to accommodate the search space.</para>
       </returns>
@@ -1589,7 +1628,7 @@ Additionally the returned value can contain the OutOfNodes flag when the pathNod
     </member>
     <member name="M:UnityEngine.Experimental.AI.NavMeshWorld.AddDependency(Unity.Jobs.JobHandle)">
       <summary>
-        <para>Tells the NavMesh world to wait with doing any changes until after the specified job is completed.</para>
+        <para>Tells the NavMesh world to halt any changes until the specified job is completed.</para>
       </summary>
       <param name="job">The job that needs to be completed before the NavMesh world can be modified in any way.</param>
     </member>
@@ -1663,37 +1702,45 @@ Additionally the returned value can contain the OutOfNodes flag when the pathNod
         <para>Data in the NavMesh world has a wrong version.</para>
       </summary>
     </member>
-    <member name="T:UnityEngine.Experimental.AI.PolygonID">
+    <member name="T:UnityEngine.Experimental.AI.PolygonId">
       <summary>
         <para>Represents a compact identifier for the data of a NavMesh node.</para>
       </summary>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.PolygonID.Equals(System.Object)">
+    <member name="M:UnityEngine.Experimental.AI.PolygonId.Equals(UnityEngine.Experimental.AI.PolygonId)">
       <summary>
-        <para>Returns true if two PolygonID objects refer to the same NavMesh node.</para>
+        <para>Returns true if two PolygonId objects refer to the same NavMesh node.</para>
       </summary>
+      <param name="rhs"></param>
       <param name="obj"></param>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.PolygonID.GetHashCode">
+    <member name="M:UnityEngine.Experimental.AI.PolygonId.Equals(System.Object)">
+      <summary>
+        <para>Returns true if two PolygonId objects refer to the same NavMesh node.</para>
+      </summary>
+      <param name="rhs"></param>
+      <param name="obj"></param>
+    </member>
+    <member name="M:UnityEngine.Experimental.AI.PolygonId.GetHashCode">
       <summary>
         <para>Returns the hash code for use in collections.</para>
       </summary>
     </member>
-    <member name="M:UnityEngine.Experimental.AI.PolygonID.IsNull">
+    <member name="M:UnityEngine.Experimental.AI.PolygonId.IsNull">
       <summary>
-        <para>Returns true if the PolygonID has been created empty and has never pointed to any node in the NavMesh.</para>
+        <para>Returns true if the PolygonId has been created empty and has never pointed to any node in the NavMesh.</para>
       </summary>
     </member>
-    <member name="?:UnityEngine.Experimental.AI.PolygonID.op_Equal(UnityEngine.Experimental.AI.PolygonID,UnityEngine.Experimental.AI.PolygonID)">
+    <member name="?:UnityEngine.Experimental.AI.PolygonId.op_Equal(UnityEngine.Experimental.AI.PolygonId,UnityEngine.Experimental.AI.PolygonId)">
       <summary>
-        <para>Returns true if two PolygonID objects refer to the same NavMesh node or if they are both null.</para>
+        <para>Returns true if two PolygonId objects refer to the same NavMesh node or if they are both null.</para>
       </summary>
       <param name="x"></param>
       <param name="y"></param>
     </member>
-    <member name="?:UnityEngine.Experimental.AI.PolygonID.op_NotEqual(UnityEngine.Experimental.AI.PolygonID,UnityEngine.Experimental.AI.PolygonID)">
+    <member name="?:UnityEngine.Experimental.AI.PolygonId.op_NotEqual(UnityEngine.Experimental.AI.PolygonId,UnityEngine.Experimental.AI.PolygonId)">
       <summary>
-        <para>Returns true if two PolygonID objects refer to different NavMesh nodes or if only one of them is null.</para>
+        <para>Returns true if two PolygonId objects refer to different NavMesh nodes or if only one of them is null.</para>
       </summary>
       <param name="x"></param>
       <param name="y"></param>
